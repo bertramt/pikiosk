@@ -17,4 +17,53 @@ Install Raspbian Lite
 placeholder
 ```
 
-### First Boot
+### First Boot (Basic OS Setup)
+
+Here are some of the most common items that need to be configured on a fresh install. 
+
+####
+Install Updates (If you need to configure Wi-fi skip this step and come back after running raspi-config)
+```
+sudo apt update && sudo apt install -y raspi-config
+```
+
+####
+Raspberry Pi Config (raspi-config) is a tool used to configure your Raspberry Pi
+
+```
+sudo raspi-config
+    *Change Password
+    *Network Options > Change Hostname
+    *Network Options > Wi-fi (optional) 
+    *Boot Options > Desktop/CLI > Console Autologin (NOT Desktop!!)
+    *Localization Options > Change Locale > Enable 'en_US.UTF-8 UTF-8'
+    *Localization Options > Time Zone > US > Central
+    *Interfacing Options > SSH > Enable (optional)
+
+```
+
+
+## Kiosk Installation
+### Download and change folder
+```
+cd ~
+git clone https://github.com/bertramt/pikiosk.git
+
+cd pikiosk
+```
+### Run install
+```
+./install.sh
+```
+
+## Uninstallation
+
+### Change to dotfiles folder
+```
+cd ~/pikiosk
+```
+
+### Run uninstaller
+```
+./uninstall.sh
+```
