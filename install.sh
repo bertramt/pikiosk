@@ -16,7 +16,7 @@ while true; do
     read -p "Do you wish to install extra RPi-Mon package?" yn
     case $yn in
         [Yy]* ) sudo wget http://goo.gl/vewCLL -O /etc/apt/sources.list.d/rpimonitor.list;  sudo apt install -y dirmngr;sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2C0D3C0F;sudo apt update && sudo apt install -y rpimonitor;sudo /etc/init.d/rpimonitor update;break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done

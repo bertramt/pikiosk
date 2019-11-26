@@ -44,6 +44,12 @@ sudo raspi-config
 
 
 ## Kiosk Installation
+### Install git
+```
+sudo apt update && sudo apt install -y git
+```
+
+
 ### Download and change folder
 ```
 cd ~
@@ -67,3 +73,7 @@ cd ~/pikiosk
 ```
 ./uninstall.sh
 ```
+
+## TODO
+.ADD SMARTS to uninstall
+
