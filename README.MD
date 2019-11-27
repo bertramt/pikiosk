@@ -32,23 +32,40 @@ Raspberry Pi Config (raspi-config) is a tool used to configure your Raspberry Pi
 
 ```
 sudo raspi-config
-    *Change Password
-    *Network Options > Change Hostname
-    *Network Options > Wi-fi (optional) 
-    *Boot Options > Desktop/CLI > Console Autologin (NOT Desktop!!)
-    *Localization Options > Change Locale > Enable 'en_US.UTF-8 UTF-8'
-    *Localization Options > Time Zone > US > Central
-    *Interfacing Options > SSH > Enable (optional)
+    * Change Password
+    * Network Options > Change Hostname
+    * Network Options > Wi-fi (optional) 
+    * Boot Options > Desktop/CLI > Console Autologin (NOT Desktop!!)
+    * Localization Options > Change Locale > Enable 'en_US.UTF-8 UTF-8'
+    * Localization Options > Time Zone > US > Central        
+    * Interfacing Options > SSH > Enable (optional)
 
 ```
+## Optional Enhancements for Power and Touchsceen
+While setting up serveral of these for AIO kiosks with 7" touchscreens and an inline POE adapter several tweaks were added.  The key option is the lcd_rotate that may be reqired if your using a touchscreen and not a TV.  The other options mostly apply mostly reducing the power use on a Raspberry Pi 3 because of the POE adapter that was being used. I used a POE splitter verses a POE sheild because it was the easist way to power the screen and Pi via POE.  The case I used for the touchscreen and POE splitter will not work with a Rasberry Pi 4 or newer devices.
 
+For those wondering here is the equipment I used for the 7" AIO Kiosks.  
+. Raspberry Pi 3
+. [Touchscreen](https://www.amazon.com/dp/B0153R2A9I)
+. [Touchscreen Case](https://www.amazon.com/dp/B01GQFUWIC)
+. [POE Splitter](https://www.amazon.com/dp/B019BLMWY0)
 
-## Kiosk Installation
+Here are the /boot/config.txt options I added to rotate the screen and slightly reduce the power useage.
+```
+lcd_rotate=2
+dtparam=act_led_trigger=none
+dtparam=act_led_activelow=off
+dtparam=pwr_led_trigger=none
+dtparam=pwr_led_activelow=off
+dtoverlay=pi3-disable-wifi
+dtoverlay=pi3-disable-bt
+```
+
+## Kiosk Browser Installation
 ### Install git
 ```
 sudo apt update && sudo apt install -y git
 ```
-
 
 ### Download and change folder
 ```
@@ -61,6 +78,34 @@ cd pikiosk
 ```
 ./install.sh
 ```
+
+## Finishing Details
+
+Head on over to the raspberry pi docs for more details on the [config.txt](https://www.raspberrypi.org/documentation/configuration/config-txt/video.md).
+
+### /boot/config.txt
+
+#### Limit to 1080p
+Some of my TVs are 4K and I really don't need to display at 4K
+```
+framebuffer_width=1920
+framebuffer_height=1080
+
+hdmi_group=1
+hdmi_mode=16
+```
+
+### /boot/cmdline.txt
+
+#### Quiet Down Boot
+Adding or changing these options should quiet down the booting process.
+```
+ADD: loglevel=3 consoleblank=0 quiet splash vt.global_cursor_default=0 logo.nologo plymouth.ignore-serial-consoles
+CHANGE: console=tty1 to console=tty3
+```
+
+### Boot Splash Screen
+
 
 ## Uninstallation
 
@@ -77,3 +122,7 @@ cd ~/pikiosk
 ## TODO
 .ADD SMARTS to uninstall
 
+
+
+## Helpful Links
+https://raspberrypi.stackexchange.com/questions/59310/remove-boot-messages-all-text-in-jessie

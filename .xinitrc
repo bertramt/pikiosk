@@ -1,4 +1,5 @@
 export DISPLAY=:0.0
+xrandr -s 1920x1080
 xset s off
 xset -dpms
 xset s noblank
