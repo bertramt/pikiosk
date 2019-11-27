@@ -81,7 +81,7 @@ cd pikiosk
 
 ## Finishing Details
 
-Head on over to the raspberry pi docs for more details on the [config.txt](https://www.raspberrypi.org/documentation/configuration/config-txt/video.md).
+Head on over to the raspberry pi docs for more details on the [config.txt](https://www.raspberrypi.org/documentation/configuration/config-txt/).
 
 ### /boot/config.txt
 
@@ -93,6 +93,8 @@ framebuffer_height=1080
 
 hdmi_group=1
 hdmi_mode=16
+
+disable_splash=1
 ```
 
 ### /boot/cmdline.txt
@@ -126,3 +128,4 @@ cd ~/pikiosk
 
 ## Helpful Links
 https://raspberrypi.stackexchange.com/questions/59310/remove-boot-messages-all-text-in-jessie
+https://yingtongli.me/blog/2016/12/21/splash.html
