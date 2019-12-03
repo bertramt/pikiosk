@@ -7,15 +7,13 @@ These instructions will get you up and going from a fresh install.  They may nee
 
 ### Prerequisites
 
-To start you need a Raspberry Pi and an Micro SD card loaded with [NOOBS](https://www.raspberrypi.org/downloads/noobs/). I recommend NOOBS Lite for doing a network install.
+To start you need a Raspberry Pi and an Micro SD with Raspian Lite.  If your SD card came preinstalled with [NOOBS](https://www.raspberrypi.org/downloads/noobs/) you can use that to install Raspian Lite. If you are staring with a empty SD card you can install NOOBS Lite for doing a network install of Raspian Lite.  Alternatively you could choose to directly write the [Raspian Lite](https://www.raspberrypi.org/downloads/raspbian/) image to the SD card with [etcher](https://www.balena.io/etcher/)
+
 
 ### Installing OS
 
-Install Raspbian Lite
+Install Raspbian Lite via NOOBS or writing the image to the SD card.
 
-```
-placeholder
-```
 
 ### First Boot (Basic OS Setup)
 
@@ -114,6 +112,26 @@ sudo ln splashscreen.service /etc/systemd/system/splashscreen.service
 sudo systemctl enable splashscreen
 ```
 
+
+### Changing default URL(s)
+This section needs to be cleaned up
+```
+edit chromium-browser add urls at end
+```
+
+### Tab Revolver (optional)
+This section needs to be cleaned up
+```
+edit .xinitrc and remove --kiosk
+https://chrome.google.com/webstore/detail/revolver-tabs/dlknooajieciikpedpldejhhijacnbda
+more tools > extensions > detail > enable allow in incognito
+Revolver Tabs Options
+    - Autostart
+    - Reload
+    - Rotate only when inactive
+edit .xinitrc and add --kiosk to 
+```
+
 ## Uninstallation
 
 ### Change to dotfiles folder
@@ -128,6 +146,9 @@ cd ~/pikiosk
 
 ## TODO
 - ADD SMARTS to uninstall
+- Install firewall
+- Add a cleaner way to enable/disable kiosk mode
+- Add a cleaner way to add/edit urls
 
 
 
