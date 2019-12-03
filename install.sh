@@ -73,7 +73,7 @@ else
 fi
 
 if grep -iq "consoleblank=" /boot/cmdline.txt; then 
-    echo "Log level already set in /boot/cmdline.txt"
+    echo "consoleblank already set in /boot/cmdline.txt"
 else
     sudo sed 's/$/ consoleblank=0/' /boot/cmdline.txt    
 fi
