@@ -23,6 +23,7 @@ then
         esac
     done
 else
+    echo ""
     echo "rpimonitor already installed"
 fi
 
