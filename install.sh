@@ -22,6 +22,8 @@ then
             * ) echo "Please answer yes or no.";;
         esac
     done
+else
+    echo "rpimonitor already installed"
 fi
 
 echo ""
@@ -45,7 +47,7 @@ else
     sudo ln splash.png /opt/splash.png
 fi
 
-SPLASHSERVICE=/opt/splash.png
+SPLASHSERVICE=/etc/systemd/system/splashscreen.service
 if [ -f "$SPLASHSERVICE" ]; then
     echo "$SPLASHSERVICE exists"
 else 
