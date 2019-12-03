@@ -69,15 +69,44 @@ sudo sed -i 's/console=tty1/console=tty3/g' /boot/cmdline.txt
 if grep -iq "loglevel=" /boot/cmdline.txt; then 
     echo "loglevel already set in /boot/cmdline.txt"
 else
-    sudo sed 's/$/ loglevel=3/' /boot/cmdline.txt    
+    sudo sed -in 's/$/ loglevel=3/' /boot/cmdline.txt    
 fi
 
 if grep -iq "consoleblank=" /boot/cmdline.txt; then 
     echo "consoleblank already set in /boot/cmdline.txt"
 else
-    sudo sed 's/$/ consoleblank=0/' /boot/cmdline.txt    
+    sudo sed -in 's/$/ consoleblank=0/' /boot/cmdline.txt    
 fi
 
+if grep -iq "quiet" /boot/cmdline.txt; then 
+    echo "quiet already set in /boot/cmdline.txt"
+else
+    sudo sed -in 's/$/ quiet/' /boot/cmdline.txt    
+fi
+
+if grep -iq "splash" /boot/cmdline.txt; then 
+    echo "splash already set in /boot/cmdline.txt"
+else
+    sudo sed -in 's/$/ splash/' /boot/cmdline.txt    
+fi
+
+if grep -iq "vt.global_cursor_default=" /boot/cmdline.txt; then 
+    echo "vt.global_cursor_default already set in /boot/cmdline.txt"
+else
+    sudo sed -in 's/$/ vt.global_cursor_default=0/' /boot/cmdline.txt    
+fi
+
+if grep -iq "logo.nologo" /boot/cmdline.txt; then 
+    echo "logo.nologo already set in /boot/cmdline.txt"
+else
+    sudo sed -in 's/$/ logo.nologo/' /boot/cmdline.txt    
+fi
+
+if grep -iq "plymouth.ignore-serial-consoles" /boot/cmdline.txt; then 
+    echo "plymouth.ignore-serial-consoles already set in /boot/cmdline.txt"
+else
+    sudo sed -in 's/$/ plymouth.ignore-serial-consoles/' /boot/cmdline.txt    
+fi
 
 echo ""
 echo "Installed Please Reboot"
