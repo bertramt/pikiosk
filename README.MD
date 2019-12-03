@@ -107,7 +107,12 @@ CHANGE: console=tty1 to console=tty3
 ```
 
 ### Boot Splash Screen
-
+This should be done automaticly via the install script.
+```
+sudo ln splash.png /opt/splash.png
+sudo ln splashscreen.service /etc/systemd/system/splashscreen.service
+sudo systemctl enable splashscreen
+```
 
 ## Uninstallation
 
@@ -122,7 +127,7 @@ cd ~/pikiosk
 ```
 
 ## TODO
-.ADD SMARTS to uninstall
+- ADD SMARTS to uninstall
 
 
 

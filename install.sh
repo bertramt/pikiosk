@@ -10,7 +10,7 @@
 #fi
 
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y xinit xserver-xorg chromium-browser htop numlockx tmux
+sudo apt install -y xinit xserver-xorg chromium-browser htop numlockx tmux fbi
 
 while true; do
     read -p "Do you wish to install extra RPi-Mon package?" yn
@@ -33,6 +33,10 @@ for file in $(find . -maxdepth 1 -name ".*" -type f  -printf "%f\n" ); do
     fi
     ln -s $PWD/$file ~/$file
 done
+
+sudo ln splash.png /opt/splash.png
+sudo ln splashscreen.service /etc/systemd/system/splashscreen.service
+sudo systemctl enable splashscreen
 
 echo ""
 echo "Installed Please Reboot"
