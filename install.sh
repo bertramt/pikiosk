@@ -66,14 +66,18 @@ sudo systemctl enable splashscreen
 #Move Concole output to tty3
 sudo sed -i 's/console=tty1/console=tty3/g' /boot/cmdline.txt
 
-#sed 's/$/ | COUNTRY/' file
-
 if grep -iq "loglevel=" /boot/cmdline.txt; then 
+    echo "loglevel already set in /boot/cmdline.txt"
+else
+    sudo sed 's/$/ loglevel=3/' /boot/cmdline.txt    
+fi
+
+if grep -iq "consoleblank=" /boot/cmdline.txt; then 
     echo "Log level already set in /boot/cmdline.txt"
 else
-    sudo sed 's/$/ loglevel=3' file
-    #echo "do something else"
+    sudo sed 's/$/ consoleblank=0/' /boot/cmdline.txt    
 fi
+
 
 echo ""
 echo "Installed Please Reboot"
