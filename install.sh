@@ -12,14 +12,17 @@
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y xinit xserver-xorg chromium-browser htop numlockx tmux fbi
 
-while true; do
-    read -p "Do you wish to install extra RPi-Mon package?" yn
-    case $yn in
-        [Yy]* ) sudo wget http://goo.gl/vewCLL -O /etc/apt/sources.list.d/rpimonitor.list;  sudo apt install -y dirmngr;sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2C0D3C0F;sudo apt update && sudo apt install -y rpimonitor;sudo /etc/init.d/rpimonitor update;break;;
-        [Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
+if [ $(dpkg-query -W -f='${Status}' rpimonitor 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
+    while true; do
+        read -p "Do you wish to install extra RPi-Mon package?" yn
+        case $yn in
+            [Yy]* ) sudo wget http://goo.gl/vewCLL -O /etc/apt/sources.list.d/rpimonitor.list;  sudo apt install -y dirmngr;sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2C0D3C0F;sudo apt update && sudo apt install -y rpimonitor;sudo /etc/init.d/rpimonitor update;break;;
+            [Nn]* ) break;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+fi
 
 echo ""
 echo "Apt installs complete"
@@ -34,8 +37,22 @@ for file in $(find . -maxdepth 1 -name ".*" -type f  -printf "%f\n" ); do
     ln -s $PWD/$file ~/$file
 done
 
-sudo ln splash.png /opt/splash.png
-sudo ln splashscreen.service /etc/systemd/system/splashscreen.service
+SPLASHIMAGE=/opt/splash.png
+if [ -f "$SPLASHIMAGE" ]; then
+    echo "$SPLASHIMAGE exists"
+else 
+    echo "$SPLASHIMAGE does not exist"
+    sudo ln splash.png /opt/splash.png
+fi
+
+SPLASHSERVICE=/opt/splash.png
+if [ -f "$SPLASHSERVICE" ]; then
+    echo "$SPLASHSERVICE exists"
+else 
+    echo "$SPLASHSERVICE does not exist"
+    sudo ln splashscreen.service /etc/systemd/system/splashscreen.service
+fi
+
 sudo systemctl enable splashscreen
 
 echo ""
