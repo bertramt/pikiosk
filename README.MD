@@ -98,7 +98,7 @@ disable_splash=1
 ### /boot/cmdline.txt
 
 #### Quiet Down Boot
-Adding or changing these options should quiet down the booting process.
+Adding or changing these options should quiet down the booting process.  This is done automaticly with the install script.
 ```
 ADD: loglevel=3 consoleblank=0 quiet splash vt.global_cursor_default=0 logo.nologo plymouth.ignore-serial-consoles
 CHANGE: console=tty1 to console=tty3
