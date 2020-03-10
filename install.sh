@@ -11,7 +11,7 @@
 
 # Install Updates and other required packages
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y xinit xserver-xorg chromium-browser htop numlockx tmux fbi
+sudo apt install -y xinit xserver-xorg chromium-browser htop numlockx tmux fbi cec-utils
 
 #Check if rpimonitor is installed and offer to install it.
 if [ $(dpkg-query -W -f='${Status}' rpimonitor 2>/dev/null | grep -c "ok installed") -eq 0 ];
