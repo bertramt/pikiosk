@@ -112,7 +112,6 @@ sudo ln splashscreen.service /etc/systemd/system/splashscreen.service
 sudo systemctl enable splashscreen
 ```
 
-
 ### Changing default URL(s)
 This section needs to be cleaned up
 ```
