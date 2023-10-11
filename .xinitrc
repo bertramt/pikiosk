@@ -1,10 +1,7 @@
 export DISPLAY=:0.0
 xrandr -s 1920x1080
-<<<<<<< HEAD
 
 #Rotated Touchscreen
-=======
->>>>>>> b460fd29a6ec1c287cdeeb6023d009d899e611fb
 #xrandr -s 1080x1920
 #xrandr --output HDMI-1 --rotate left
 #xinput set-prop 6 "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
@@ -12,18 +9,14 @@ xrandr -s 1920x1080
 #xinput set-prop 8 "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
 #xinput set-prop 9 "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
 #xinput set-prop 10 "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
-<<<<<<< HEAD
 
 #Enable second screen
 #xrandr --output HDMI-2 --auto --right-of HDMI-1
 
-=======
->>>>>>> b460fd29a6ec1c287cdeeb6023d009d899e611fb
 xset s off
 xset -dpms
 xset s noblank
 numlockx on
-<<<<<<< HEAD
 
 #Attempts to extend SD life
 sudo swapoff --all
@@ -32,9 +25,6 @@ mkdir -p /run/user/1000/chromium/
 ln -s /run/user/1000/chromium/ /home/pi/.cache/
 
 #Cleanup Some files
-=======
-#/home/pi/showserail.sh > /dev/null &
->>>>>>> b460fd29a6ec1c287cdeeb6023d009d899e611fb
 sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' ~/.config/chromium/'Local State'
 sed -i 's/"exited_cleanly":false/"exited_cleanly":true/; s/"exit_type":"[^"]\+"/"exit_type":"Normal"/' ~/.config/chromium/Default/Preferences
 
@@ -45,7 +35,6 @@ fi
 
 touch urllist.txt
 URL_LIST=`cat urllist.txt`
-<<<<<<< HEAD
 
 
 #chromium-browser --window-size=1920,1080 --window-position=0,0 --kiosk --no-default-browser-check --no-first-run --disable-infobars --disable-session-crashed-bubble --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT' --disable-component-update "https://google.com"
@@ -59,12 +48,3 @@ chromium-browser --window-size=1920,1080 --kiosk --no-default-browser-check --no
 #Dual Browsers
 #chromium-browser --kiosk --new-window --user-data-dir="~/.config/chromium/Default/Preferences" --window-position=0,0 --window-size=1920,1080 --no-default-browser-check --no-first-run --disable-infobars --disable-session-crashed-bubble --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT' --disable-component-update $URL_LIST &
 #chromium-browser --kiosk --new-window --user-data-dir="~/.config/chromium/Default2/Preferences" --window-position=1921,0 --window-size=1920,1080 --no-default-browser-check --no-first-run --disable-infobars --disable-session-crashed-bubble --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT' --disable-component-update $URL_LIST
-
-=======
-
-#Normal TV
-chromium-browser --window-size=1920,1080 --kiosk --no-default-browser-check --no-first-run --disable-infobars --disable-session-crashed-bubble --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT' --disable-component-update -–disable-features=TouchpadOverscrollHistoryNavigation $URL_LIST
-
-#Vertical Touchscreen
-chromium-browser --window-size=1080,1920 --kiosk --no-default-browser-check --no-first-run --disable-infobars --disable-session-crashed-bubble --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT' --disable-component-update  $URL_LIST
->>>>>>> b460fd29a6ec1c287cdeeb6023d009d899e611fb
