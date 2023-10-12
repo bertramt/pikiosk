@@ -1,7 +1,13 @@
 export DISPLAY=:0.0
+#Normal
 xrandr -s 1920x1080
 
-#Rotated Touchscreen
+#Pi 7" Touchsceen
+#xrandr -s 800x480
+#xrandr --output DSI-1 --rotate inverted
+#xinput set-prop 6 "Coordinate Transformation Matrix" -1 0 1 0 -1 1 0 0 1
+
+#Rotated HD Touchscreen
 #xrandr -s 1080x1920
 #xrandr --output HDMI-1 --rotate left
 #xinput set-prop 6 "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
