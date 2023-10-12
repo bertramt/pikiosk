@@ -12,7 +12,7 @@ To start you need a Raspberry Pi and an Micro SD with Raspian Lite.  If your SD 
 
 ### Installing OS
 
-Install Raspbian Lite via NOOBS or writing the image to the SD card.
+Install Raspbian Lite via NOOBS or writing the image to the SD card. Use of NOOBS has been discontinued current recommended method is to use the Raspberry Pi Imager and use the "Raspberry Pi OS Lite (64bit)" or "Raspberry Pi OS Lite (32bit)". If you need to configure hostname, wifi, password and ssh you can now do that in the Raspberry Pi Imager.
 
 
 ### First Boot (Basic OS Setup)
@@ -26,8 +26,22 @@ sudo apt update && sudo apt install -y raspi-config
 ```
 
 ####
-Raspberry Pi Config (raspi-config) is a tool used to configure your Raspberry Pi
+Raspberry Pi Config (raspi-config) is a tool used to configure your Raspberry Pi.  Most of these settings can be set from the Raspberry Pi Imager but you can also adjust them at any time with raspi-config.
 
+New Versions
+```
+sudo raspi-config
+    * System Options > Password
+    * System Options > Hostname    
+    * System Options > Boot / Auto Login > Console Autologin (NOT Desktop!!)
+    * System Options > Wireless LAN (optional)
+    * Localization Options > Locale > Enable 'en_US.UTF-8 UTF-8'
+    * Localization Options > Timezone > US > Central        
+    * Localization Options > WLAN Country
+    * Interface Options > SSH > Enable (optional)
+```
+
+Old Versions (Not really relevant anymore)
 ```
 sudo raspi-config
     * Change Password
@@ -39,8 +53,8 @@ sudo raspi-config
     * Interfacing Options > SSH > Enable (optional)
 
 ```
-## Optional Enhancements for Power and Touchsceen
-While setting up serveral of these for AIO kiosks with 7" touchscreens and an inline POE adapter several tweaks were added.  The key option is the lcd_rotate that may be reqired if your using a touchscreen and not a TV.  The other options mostly apply mostly reducing the power use on a Raspberry Pi 3 because of the POE adapter that was being used. I used a POE splitter verses a POE sheild because it was the easist way to power the screen and Pi via POE.  The case I used for the touchscreen and POE splitter will not work with a Rasberry Pi 4 or newer devices.
+## Optional Enhancements for Power and Touchscreen
+While setting up several of these for AIO kiosks with 7" touchscreens and an inline POE adapter several tweaks were added.  The key option is the lcd_rotate that may be required if your using a touchscreen and not a TV.  The other options mostly apply mostly reducing the power use on a Raspberry Pi 3 because of the POE adapter that was being used. I used a POE splitter verses a POE shield because it was the easiest way to power the screen and Pi via POE.  The case I used for the touchscreen and POE splitter will not work with a Raspberry Pi 4 or newer devices.
 
 For those wondering here is the equipment I used for the 7" AIO Kiosks.  
 . Raspberry Pi 3
@@ -48,7 +62,7 @@ For those wondering here is the equipment I used for the 7" AIO Kiosks.
 . [Touchscreen Case](https://www.amazon.com/dp/B01GQFUWIC)
 . [POE Splitter](https://www.amazon.com/dp/B019BLMWY0)
 
-Here are the /boot/config.txt options I added to rotate the screen and slightly reduce the power useage.
+Here are the /boot/config.txt options I added to rotate the screen and slightly reduce the power usage.
 ```
 lcd_rotate=2
 dtparam=act_led_trigger=none
@@ -98,14 +112,14 @@ disable_splash=1
 ### /boot/cmdline.txt
 
 #### Quiet Down Boot
-Adding or changing these options should quiet down the booting process.  This is done automaticly with the install script.
+Adding or changing these options should quiet down the booting process.  This is done automatically with the install script.
 ```
 ADD: loglevel=3 consoleblank=0 quiet splash vt.global_cursor_default=0 logo.nologo plymouth.ignore-serial-consoles
 CHANGE: console=tty1 to console=tty3
 ```
 
 ### Boot Splash Screen
-This should be done automaticly via the install script.
+This should be done automatically via the install script.
 ```
 sudo ln splash.png /opt/splash.png
 sudo ln splashscreen.service /etc/systemd/system/splashscreen.service
