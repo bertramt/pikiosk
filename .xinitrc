@@ -29,7 +29,7 @@ sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' ~/.config/chromium/'Loc
 sed -i 's/"exited_cleanly":false/"exited_cleanly":true/; s/"exit_type":"[^"]\+"/"exit_type":"Normal"/' ~/.config/chromium/Default/Preferences
 
 #If urllist.txt that doesn't exist then assuming first run and open up tab revolver install
-if test -f /home/pi/urllist.txt; then
+if ! test -f /home/pi/urllist.txt; then
   chromium-browser https://chrome.google.com/webstore/detail/revolver-tabs/dlknooajieciikpedpldejhhijacnbda
 fi
 
